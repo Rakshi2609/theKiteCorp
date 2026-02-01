@@ -7,6 +7,7 @@ import Creative from './pages/creative/Creative';
 import Marketing from './pages/marketing/Marketing';
 import Contact from './pages/contact/Contact';
 import Blog from './pages/blog/Blog';
+import Footer from './components/layout/Footer';
 
 function AnimatedRoutes() {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function App() {
     <Router>
       <KiteNavbar />
       <AnimatedRoutes />
+      <Footer />
     </Router>
   );
 }

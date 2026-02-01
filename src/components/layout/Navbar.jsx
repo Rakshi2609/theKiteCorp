@@ -25,12 +25,21 @@ export default function KiteNavbar() {
       { y: 0, opacity: 1, duration: 0.8, ease: "power3.out", delay: 0.2 }
     );
 
-    circleRefs.current.forEach((circle) => {
-      if (circle) gsap.set(circle, { scale: 0, yPercent: 100 });
+    // Ensure all circles start in reset state
+    circleRefs.current.forEach((circle, i) => {
+      if (circle) {
+        gsap.set(circle, { scale: 0, yPercent: 100 });
+        // Reset text states to prevent stuck hover
+        gsap.set(`.text-default-${i}`, { y: 0, opacity: 1 });
+        gsap.set(`.text-hover-${i}`, { y: 20, opacity: 0 });
+      }
     });
-  }, [location.pathname]); // Re-run subtle logic on route change
+  }, []); // Run only once on mount
 
   const onEnter = (i) => {
+    // Kill any existing animations first to prevent conflicts
+    gsap.killTweensOf([circleRefs.current[i], `.text-default-${i}`, `.text-hover-${i}`]);
+    
     const tl = gsap.timeline({ defaults: { duration: 0.3, ease: "expo.out" } });
     tl.to(circleRefs.current[i], { scale: 3, yPercent: -50 }, 0)
       .to(`.text-default-${i}`, { y: -20, opacity: 0 }, 0)
@@ -38,7 +47,18 @@ export default function KiteNavbar() {
   };
 
   const onLeave = (i) => {
-    const tl = gsap.timeline({ defaults: { duration: 0.3, ease: "expo.inOut" } });
+    // Kill any existing animations first to prevent conflicts
+    gsap.killTweensOf([circleRefs.current[i], `.text-default-${i}`, `.text-hover-${i}`]);
+    
+    const tl = gsap.timeline({ 
+      defaults: { duration: 0.3, ease: "expo.inOut" },
+      onComplete: () => {
+        // Ensure clean state after animation completes
+        gsap.set(`.text-default-${i}`, { y: 0, opacity: 1 });
+        gsap.set(`.text-hover-${i}`, { y: 20, opacity: 0 });
+        gsap.set(circleRefs.current[i], { scale: 0, yPercent: 100 });
+      }
+    });
     tl.to(circleRefs.current[i], { scale: 0, yPercent: 100 }, 0)
       .to(`.text-default-${i}`, { y: 0, opacity: 1 }, 0.1)
       .to(`.text-hover-${i}`, { y: 20, opacity: 0 }, 0);
@@ -69,6 +89,12 @@ export default function KiteNavbar() {
                 to={link.href}
                 onMouseEnter={() => onEnter(i)}
                 onMouseLeave={() => onLeave(i)}
+                onClick={(e) => {
+                  // Ensure smooth client-side navigation
+                  if (location.pathname === link.href) {
+                    e.preventDefault();
+                  }
+                }}
                 className={`relative px-5 py-2.5 rounded-full overflow-hidden transition-all duration-300 ${isActive ? 'bg-black shadow-lg' : 'bg-transparent'}`}
               >
                 <div 
@@ -110,7 +136,12 @@ export default function KiteNavbar() {
             <Link 
               key={link.href} 
               to={link.href} 
-              onClick={() => setIsOpen(false)}
+              onClick={(e) => {
+                if (location.pathname === link.href) {
+                  e.preventDefault();
+                }
+                setIsOpen(false);
+              }}
               className={`p-5 rounded-2xl transition-all font-black uppercase tracking-widest text-center text-xs ${location.pathname === link.href ? 'bg-black text-white' : 'hover:bg-gray-100'}`}
             >
               {link.label}
