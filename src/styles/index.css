@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  background-color: #fafafa;
+  color: #060010;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom selection color to match Kite Corp */
+::selection {
+  background: #060010;
+  color: #fff;
+}
+
+/* Smooth scrolling for the whole site */
+html {
+  scroll-behavior: smooth;
+}
