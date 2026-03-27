@@ -29,7 +29,7 @@ export default function App() {
   return (
     <Router>
       <KiteNavbar />
-      <AnimatedRoutes />
+         <AnimatedRoutes />
       <Footer />
     </Router>
   );

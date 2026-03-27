@@ -229,10 +229,10 @@ export default function Home() {
       </section>
 
       {/* ================= BRANDING ================= */}
-      <section className="reveal-section py-32 grid grid-cols-1 md:grid-cols-2 gap-20 items-center overflow-x-hidden">
+      <section className="reveal-section py-32 grid grid-cols-1 md:grid-cols-2 gap-20 items-center overflow-x-hidden p-[20px]">
 
         {/* 01 CARD - PREMIUM DESIGN */}
-        <div className="reveal-left tilt-card scale-card parallax-card relative aspect-[3/4] max-w-sm rounded-[3rem] bg-gradient-to-br from-neutral-900 via-neutral-800 to-black overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] cursor-none group">
+        <div className="reveal-left tilt-card scale-card parallax-card relative aspect-[3/4] max-w-sm rounded-[3rem] bg-gradient-to-br from-neutral-900 via-neutral-800 to-black overflow-hidden shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] cursor-none group">
           {/* Multiple Glow Layers */}
           <div className="glow absolute inset-0 bg-blue-500/25 blur-[90px] opacity-0 pointer-events-none" />
           <div className="shine absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 pointer-events-none transform rotate-12" />
@@ -351,7 +351,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 mx-4">
           {[
             { title: "SEO", tag: "Search Visibility", side: "reveal-left", color: "from-emerald-500 to-teal-600" },
             { title: "Performance", tag: "Paid Growth", side: "reveal-left", color: "from-orange-500 to-red-600" },
@@ -392,7 +392,7 @@ export default function Home() {
               </div>
               
               {/* Floating Number */}
-              <div className={`card-number absolute -bottom-4 -right-4 text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${item.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`}>
+              <div className={`card-number absolute -bottom-0 -right-0 text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r ${item.color} opacity-5 group-hover:opacity-15 transition-opacity duration-500`}>
                 0{i + 1}
               </div>
             </div>

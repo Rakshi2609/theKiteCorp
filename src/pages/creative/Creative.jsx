@@ -100,7 +100,7 @@ export default function Creative() {
       </div>
 
       {/* Spacer to allow for scroll room */}
-      <div className="h-[20vh]" />
+      <div className="h-[5vh]" />
     </PageWrapper>
   );
 }
