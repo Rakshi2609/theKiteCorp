@@ -13,7 +13,7 @@ const brandingPillars = [
     color: "bg-neutral-900"
   },
   {
-    title: "Brand Positioning",
+    title: "Brand Posi    tioning",
     desc: "Defining your unique market space. We find the gap and make sure you own it.",
     details: ["Market Analysis", "Value Proposition", "Competitive Edge"],
     color: "bg-blue-600"
